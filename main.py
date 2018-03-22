@@ -65,6 +65,10 @@ def callback():
 def message_text(event):
     if event.message.text == "買う！":
         text = "何を買うんですか？"
+    elif event.message.text == "買った！":
+        text = "何を買ったんですか？"
+    elif "おはよう" in event.message.text:
+        text = "おはようございます！"
     else:
         text = "あなたがおっしゃったことは" + event.message.text + "ですね。"
     
