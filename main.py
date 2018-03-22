@@ -67,6 +67,8 @@ def message_text(event):
         text = "何を買うんですか？"
     elif event.message.text == "買った！":
         text = "何を買ったんですか？"
+    elif "ヘルプ" in event.message.text:
+        text = "操作コマンド\n\n買う！＝＞何を買うんですか？\n買った！＝＞何を買ったんですか？\nおはよう　が含まれる＝＞おはようございます！\nそれ以外＝＞おうむ返し的なやつ"
     elif "おはよう" in event.message.text:
         text = "おはようございます！"
     else:
