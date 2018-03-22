@@ -67,10 +67,11 @@ def message_text(event):
         text = "何を買うんですか？"
     else:
         text = "あなたがおっしゃったことは" + event.message.text + "ですね。"
-        line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text)
-        )
+    
+    line_bot_api.reply_message(
+        event.reply_token,
+        TextSendMessage(text)
+    )
 
 
 if __name__ == "__main__":
