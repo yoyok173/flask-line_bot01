@@ -72,7 +72,7 @@ def message_text(event):
     elif "買う！" in event.message.text:
         user_text = event.message.text
         item = user_text.replace('買う！','')
-        text = "{{ item }}をお買い物リストに入れたよ！"
+        text = item + "をお買い物リストに入れたよ！"
         # 〇〇を切り取って発言で返せるようにしたい。
     elif "買った！" in event.message.text:
         text = "〇〇をお買い物リストから除いたよ！"
