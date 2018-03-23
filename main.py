@@ -77,9 +77,17 @@ def message_text(event):
         user_text = event.message.text
         item = user_text.replace('買う！','')
         text = item + " をお買い物リストに入れたよ！"
+    elif "買う!" in event.message.text:
+        user_text = event.message.text
+        item = user_text.replace('買う!','')
+        text = item + " をお買い物リストに入れたよ！"
     elif "買った！" in event.message.text:
         user_text = event.message.text
         item = user_text.replace('買った！', '')
+        text = item + " をお買い物リストから除いたよ！"
+    elif "買った!" in event.message.text:
+        user_text = event.message.text
+        item = user_text.replace('買った!', '')
         text = item + " をお買い物リストから除いたよ！"
         ### RUBY CODE
         """
