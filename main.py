@@ -69,6 +69,19 @@ def message_text(event):
         text = "何を買ったんですか？"
     elif "ヘルプ" in event.message.text:
         text = "操作コマンド\n\n買う！＝＞何を買うんですか？\n買った！＝＞何を買ったんですか？\nおはよう　が含まれる＝＞おはようございます！\nそれ以外＝＞おうむ返し的なやつ"
+    elif "買う！" in event.message.text:
+        text = "〇〇をお買い物リストに入れたよ！"
+        # 〇〇を切り取って発言で返せるようにしたい。
+    elif "買った！" in event.message.text:
+        text = "〇〇をお買い物リストから除いたよ！"
+        # 〇〇を切り取って発言で返せるようにしたい。（正規表現など。Rubyでできているので参考にしてもよいかも？）
+        ### RUBY CODE
+        """
+            if !data_fix.include?("買う！")
+              @d = data_fix
+              HTTP.post("", json: { task: { name: @d} })
+            end
+        """
     elif "おはよう" in event.message.text:
         text = "おはようございます！"
     else:
