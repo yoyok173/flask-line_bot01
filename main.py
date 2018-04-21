@@ -116,12 +116,23 @@ def message_text(event):
 
     elif "買う!" in event.message.text:
         user_text = event.message.text
+        source_id = str(event.source.user_id)
         item = user_text.replace('買う!','')
         text = item + " をお買い物リストに入れたよ！"
         # ここで、DBにデータを入れる
         #
         # データ型
         # 
+        if not User.query.filter_by(source_id=source_id).first():
+            user = User(source_id=source_id)
+            db.session.add(user)
+            db.session.commit()
+
+        user_id= User.query.filter_by(source_id=source_id).first().id
+        item = Item(name=item, user_id=user_id)
+        db.session.add(item)
+        db.session.commit()
+
     elif "買った！" in event.message.text:
         user_text = event.message.text
         item = user_text.replace('買った！', '')
