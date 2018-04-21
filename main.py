@@ -45,6 +45,25 @@ if channel_access_token is None:
 line_bot_api = LineBotApi(channel_access_token)
 handler = WebhookHandler(channel_secret)
 
+
+# モデル作成
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    source_id = db.Column(db.String(200), unique=True)
+
+    def __init__(self, source_id):
+        self.source_id = source_id
+
+class Item(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    item = db.Column(db.string(30))
+    user_id =db.Column(db.Integer, db.ForeignKey('user_id'))
+
+    def __init__(self, item, user_id):
+        self.item = item
+        self.user_id = user_id
+
+
 # DBに見立てる仮
 
 items = [
