@@ -112,8 +112,10 @@ def message_text(event):
     elif "おはよう" in event.message.text:
         text = "おはようございます！"
         # 今日買うリストはこんな感じですね！元気にいきましょう♪（一覧表示）
-        text = text + "サンプル"
         # APIを叩く。例：/v1/api/items GETして一覧を表示する。
+        # いやAPI叩く必要がないか
+        text = text + items[0].name
+
 
     else:
         text = "あなたがおっしゃったことは" + event.message.text + "ですね。"
