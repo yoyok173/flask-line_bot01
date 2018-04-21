@@ -65,27 +65,6 @@ class Item(db.Model):
         self.user_id = user_id
 
 
-# DBに見立てる仮
-
-items = [
-    {
-        'id': 1,
-        'name': '卵',
-        'bought': False
-    },
-    {
-        'id': 2,
-        'name': 'ティッシュ',
-        'bought': False
-    },
-    {
-        'id': 3,
-        'name': 'タオル',
-        'bought': False
-    }
-]
-
-
 @app.route("/callback", methods=['POST'])
 def callback():
     # get X-Line-Signature header value
@@ -171,6 +150,10 @@ def message_text(event):
         source_id = str(event.source.user_id)
         user_id = User.query.filter_by(source_id=source_id).first().id
         items = Item.query.filter(User.id==user_id).all()
+        items_list = ""
+        for item in items:
+            items_list = items_list + item['name'] + '\n'
+        text = text + '\n\n' + items_list
 
 
     else:
