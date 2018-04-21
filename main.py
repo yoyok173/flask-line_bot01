@@ -84,6 +84,23 @@ items = [
     }
 ]
 
+@app.route("/api/v1/items", methods=['POST'])
+def item_register():
+    if request.method == 'POST':
+        name= request.form['name']
+        email = request.form['email']
+        task = request.form['task']
+        if not User.query.filter_by(User.source_id == source_id)
+            reg = User(source_id)
+            db.session.add(reg)
+            db.session.commit()
+
+        # 商品追加
+        user_id= User.query.filter_by(User.source_id == source_id).first().id
+        task = Task(text, user_id)
+        db.session.add(task)
+        db.session.commit()
+
 
 @app.route("/callback", methods=['POST'])
 def callback():
