@@ -114,7 +114,13 @@ def message_text(event):
         # 今日買うリストはこんな感じですね！元気にいきましょう♪（一覧表示）
         # APIを叩く。例：/v1/api/items GETして一覧を表示する。
         # いやAPI叩く必要がないか
-        text = text + items[0]['name']
+        # items数を取ってくる。
+        for item in items:
+            a = a + item['name'] + "\n"
+
+        b = "現在のお買い物リストです。\n"
+
+        text = text + '\n\n' + b + a
 
 
     else:
