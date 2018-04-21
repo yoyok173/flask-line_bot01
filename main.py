@@ -16,7 +16,7 @@ import os
 import sys
 from argparse import ArgumentParser
 
-from flask import Flask, request, abort
+from flask import Flask, request, abort, jsonify
 from linebot import (
     LineBotApi, WebhookHandler
 )
@@ -41,6 +41,26 @@ if channel_access_token is None:
 
 line_bot_api = LineBotApi(channel_access_token)
 handler = WebhookHandler(channel_secret)
+
+# DBに見立てる仮
+
+items = [
+    {
+        'id': 1,
+        'name': '卵',
+        'bought': False
+    },
+    {
+        'id': 2,
+        'name': 'ティッシュ',
+        'bought': False
+    },
+    {
+        'id': 3,
+        'name': 'タオル',
+        'bought': False
+    }
+]
 
 
 @app.route("/callback", methods=['POST'])
@@ -93,6 +113,8 @@ def message_text(event):
         text = "おはようございます！"
         # 今日買うリストはこんな感じですね！元気にいきましょう♪（一覧表示）
         text = text + "サンプル"
+        # APIを叩く。例：/v1/api/items GETして一覧を表示する。
+
     else:
         text = "あなたがおっしゃったことは" + event.message.text + "ですね。"
     
