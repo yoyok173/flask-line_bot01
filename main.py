@@ -130,7 +130,7 @@ def message_text(event):
             db.session.add(user)
             db.session.commit()
 
-        user_id= User.query.filter_by(User.source_id == source_id).first().id
+        user_id= User.query.filter_by(source_id=source_id).first().id
         item = Item(name=item, user_id=user_id)
         db.session.add(item)
         db.session.commit()
