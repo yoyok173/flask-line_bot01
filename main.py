@@ -124,6 +124,7 @@ def message_text(event):
         text = item + " をお買い物リストに入れたよ！"
         # ここで、DBにデータをいれる
         #
+        item = Item(name=item, user_id=1)
     elif "買う!" in event.message.text:
         user_text = event.message.text
         item = user_text.replace('買う!','')
@@ -158,6 +159,9 @@ def message_text(event):
 
     else:
         text = "あなたがおっしゃったことは" + event.message.text + "ですね。"
+
+    # lineBOT 登録
+
     
     line_bot_api.reply_message(
         event.reply_token,
