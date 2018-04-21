@@ -122,6 +122,7 @@ def message_text(event):
         b = "現在のお買い物リストです。\n\n"
 
         text = text + '\n\n\n' + b + a
+        # コード汚いので、あとで直す
 
 
     else:
