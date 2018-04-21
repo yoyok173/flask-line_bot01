@@ -85,7 +85,7 @@ def callback():
 def message_text(event):
     if event.message.text == "買う！":
         text = "何を買うんですか？"
-        text1 = ""
+        text1 = event.source.userid
         # UserIdを一意にとる
         text = text + '\n\n' + 'あなたのLINEIDは\n' + text1
     elif event.message.text == "event":
