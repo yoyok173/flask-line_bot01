@@ -57,11 +57,11 @@ class User(db.Model):
 
 class Item(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    item = db.Column(db.String(30))
+    name = db.Column(db.String(30))
     user_id =db.Column(db.Integer, db.ForeignKey('user.id'))
 
-    def __init__(self, item, user_id):
-        self.item = item
+    def __init__(self, name, user_id):
+        self.name = name
         self.user_id = user_id
 
 
@@ -125,6 +125,8 @@ def message_text(event):
         # ここで、DBにデータをいれる
         #
         item = Item(name=item, user_id=1)
+        db.session.add(item)
+        db.session.commit()
     elif "買う!" in event.message.text:
         user_text = event.message.text
         item = user_text.replace('買う!','')
