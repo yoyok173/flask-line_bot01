@@ -154,7 +154,7 @@ def message_text(event):
         for item in items:
             a = a + item.name + '\n'
 
-        text = text + '\n\n' + items_list
+        text = text + '\n\n' + a
 
 
     else:
