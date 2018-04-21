@@ -152,7 +152,7 @@ def message_text(event):
         items = Item.query.filter_by(user_id=user_id).all()
         a = ""
         for item in items:
-            a = a + item['name'] + '\n'
+            a = a + item.name + '\n'
 
         text = text + '\n\n' + items_list
 
