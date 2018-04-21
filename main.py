@@ -89,13 +89,6 @@ def message_text(event):
         user_text = event.message.text
         item = user_text.replace('買った!', '')
         text = item + " をお買い物リストから除いたよ！"
-        ### RUBY CODE
-        """
-            if !data_fix.include?("買う！")
-              @d = data_fix
-              HTTP.post("", json: { task: { name: @d} })
-            end
-        """
     elif "おはよう" in event.message.text:
         text = "おはようございます！"
         # 今日買うリストはこんな感じですね！元気にいきましょう♪（一覧表示）
