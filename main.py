@@ -119,9 +119,9 @@ def message_text(event):
         for item in items:
             a = a + item['name'] + "\n"
 
-        b = "現在のお買い物リストです。\n"
+        b = "現在のお買い物リストです。\n\n"
 
-        text = text + '\n\n' + b + a
+        text = text + '\n\n\n' + b + a
 
 
     else:
