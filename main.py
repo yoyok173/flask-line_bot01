@@ -120,13 +120,20 @@ def message_text(event):
         text = "操作コマンド\n\n買う！\n＝＞何を買うんですか？\n買った！\n＝＞何を買ったんですか？\nおはよう　が含まれる\n＝＞おはようございます！\nそれ以外\n＝＞おうむ返し的なやつ"
     elif "買う！" in event.message.text:
         user_text = event.message.text
+        source_id = str(event.source.user_id)
         item = user_text.replace('買う！','')
         text = item + " をお買い物リストに入れたよ！"
         # ここで、DBにデータをいれる
         #
-        item = Item(name=item, user_id=1)
+        if not User.query.filter_by(source_id=source_id).first():
+            user = User(source_id=source_id)
+            db.session.add(user)
+            db.session.commmit()
+
+        item = Item(name=item, user_id=)
         db.session.add(item)
         db.session.commit()
+
     elif "買う!" in event.message.text:
         user_text = event.message.text
         item = user_text.replace('買う!','')
