@@ -115,6 +115,7 @@ def message_text(event):
         # APIを叩く。例：/v1/api/items GETして一覧を表示する。
         # いやAPI叩く必要がないか
         # items数を取ってくる。
+        a = ""
         for item in items:
             a = a + item['name'] + "\n"
 
