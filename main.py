@@ -88,7 +88,7 @@ def message_text(event):
         text1 = ""
         # UserIdを一意にとる
         text = text + '\n\n' + 'あなたのLINEIDは\n' + text1
-    elif event.message.text == "eventオブジェクトをみる"
+    elif event.message.text == "eventオブジェクト"
         text = str(event)
     elif event.message.text == "買う!":
         text = "何を買うんですか？"
