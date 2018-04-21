@@ -92,6 +92,7 @@ def message_text(event):
     elif "おはよう" in event.message.text:
         text = "おはようございます！"
         # 今日買うリストはこんな感じですね！元気にいきましょう♪（一覧表示）
+        text = text + "サンプル"
     else:
         text = "あなたがおっしゃったことは" + event.message.text + "ですね。"
     
