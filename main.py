@@ -85,6 +85,9 @@ def callback():
 def message_text(event):
     if event.message.text == "買う！":
         text = "何を買うんですか？"
+        # UserIdを一意にとる
+        text1 = event.source.userId
+        text = text + '\n\n' + 'あなたのLINEIDは\n' + text1
     elif event.message.text == "買う!":
         text = "何を買うんですか？"
     elif event.message.text == "買った！":
@@ -97,10 +100,16 @@ def message_text(event):
         user_text = event.message.text
         item = user_text.replace('買う！','')
         text = item + " をお買い物リストに入れたよ！"
+        # ここで、DBにデータをいれる
+        #
     elif "買う!" in event.message.text:
         user_text = event.message.text
         item = user_text.replace('買う!','')
         text = item + " をお買い物リストに入れたよ！"
+        # ここで、DBにデータを入れる
+        #
+        # データ型
+        # 
     elif "買った！" in event.message.text:
         user_text = event.message.text
         item = user_text.replace('買った！', '')
