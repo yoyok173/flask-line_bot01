@@ -97,7 +97,7 @@ def message_text(event):
         text = str(event.source.user_id)
     elif event.message.text == "買う!":
         text = "何を買うんですか？"
-    elif event.message.text == "買った！" | event.message.text = "買った!":
+    elif event.message.text == "買った！" or event.message.text = "買った!":
         text = "何を買ったんですか？"
         '''
     elif event.message.text == "買った!":
