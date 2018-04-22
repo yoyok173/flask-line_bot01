@@ -98,7 +98,7 @@ def message_text(event):
     elif event.message.text == "私のID":
         text = str(event.source.user_id)
     elif "ヘルプ" in event.message.text:
-        text = "操作コマンド\n\n買う！\n＝＞何を買うんですか？\n買った！\n＝＞何を買ったんですか？\nおはよう　が含まれる\n＝＞おはようございます！\nそれ以外\n＝＞おうむ返し的なやつ"
+        text = "操作コマンド\n\n〇〇買う！\n＝＞〇〇をリストにいれるよ♪\n〇〇買った！\n＝＞〇〇をリストから外すよ♪\nリスト！\n＝＞リストを表示するよ\nおすすめ！\n＝＞只今、準備中・・・。\nhttps://amzn.to/2F74c9L"
     elif "買う！" in event.message.text:
         user_text = event.message.text
         source_id = str(event.source.user_id)
