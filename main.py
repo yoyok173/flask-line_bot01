@@ -65,7 +65,12 @@ class Item(db.Model):
         self.name = name
         self.user_id = user_id
 
+    # アイテムを購入したかどうかを判定する真偽値が必要
+    # 同時に修正できるように設定しておく必要がある
+    # リストから削除する。を伝えるとDBからデータが削除される
 
+
+# webhook
 @app.route("/callback", methods=['POST'])
 def callback():
     # get X-Line-Signature header value
