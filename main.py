@@ -48,7 +48,7 @@ line_bot_api = LineBotApi(channel_access_token)
 handler = WebhookHandler(channel_secret)
 
 
-# モデル作成
+# モデル
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     source_id = db.Column(db.String(200), unique=True)
