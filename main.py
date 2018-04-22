@@ -59,15 +59,19 @@ class User(db.Model):
 class Item(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(30))
-    user_id =db.Column(db.Integer, db.ForeignKey('user.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    bought = db.Column(db.Boolean, default=False)
 
     def __init__(self, name, user_id):
         self.name = name
         self.user_id = user_id
+        self.bought = bought
 
     # アイテムを購入したかどうかを判定する真偽値が必要
     # 同時に修正できるように設定しておく必要がある
     # リストから削除する。を伝えるとDBからデータが削除される
+    def __repr__(self):
+        return '<Item %r>' % self.bought
 
 
 # webhook
@@ -139,10 +143,12 @@ def message_text(event):
         user_text = event.message.text
         item = user_text.replace('買った！', '')
         text = item + " をお買い物リストから除いたよ！"
+
     elif "買った!" in event.message.text:
         user_text = event.message.text
         item = user_text.replace('買った!', '')
         text = item + " をお買い物リストから除いたよ！"
+
     elif "おはよう" in event.message.text:
         text = "おはようございます！"
 
@@ -160,9 +166,6 @@ def message_text(event):
 
     else:
         text = "あなたがおっしゃったことは" + event.message.text + "ですね。"
-
-    # lineBOT 登録
-
     
     line_bot_api.reply_message(
         event.reply_token,
