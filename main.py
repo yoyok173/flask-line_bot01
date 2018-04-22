@@ -19,6 +19,7 @@ from argparse import ArgumentParser
 from flask import Flask, request, abort, jsonify
 from flask_sqlalchemy import SQLAlchemy
 
+# linebot
 from linebot import (
     LineBotApi, WebhookHandler
 )
