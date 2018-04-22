@@ -143,18 +143,6 @@ def message_text(event):
         text = item + " をお買い物リストから除いたよ！"
     elif "おはよう" in event.message.text:
         text = "おはようございます！"
-        # 今日買うリストはこんな感じですね！元気にいきましょう♪（一覧表示）
-        # APIを叩く。例：/v1/api/items GETして一覧を表示する。
-        # いやAPI叩く必要がないか
-        # items数を取ってくる。
-        a = ""
-        for item in items:
-            a = a + item['name'] + "\n"
-
-        b = "現在のお買い物リストです。\n\n"
-
-        text = text + '\n\n\n' + b + a
-        # コード汚いので、あとで直す
 
     elif event.message.text == "リスト":
         text = "現在のお買い物リストです。"
