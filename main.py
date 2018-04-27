@@ -140,6 +140,7 @@ def message_text(event):
 
     elif "買った！" in event.message.text:
         user_text = event.message.text
+        source_id = str(event.source.user_id)
         item = user_text.replace('買った！', '')
         text = item + " をお買い物リストから除いたよ！"
 
@@ -161,6 +162,7 @@ def message_text(event):
 
     elif "買った!" in event.message.text:
         user_text = event.message.text
+        source_id = str(event.source.user_id)
         item = user_text.replace('買った!', '')
         text = item + " をお買い物リストから除いたよ！"
 
