@@ -70,13 +70,8 @@ class Item(db.Model):
         self.user_id = user_id
         self.bought = bought
 
-    # アイテムを購入したかどうかを判定する真偽値が必要
-    # 同時に修正できるように設定しておく必要がある
-    # リストから削除する。を伝えるとDBからデータが削除される
-    '''
     def __repr__(self):
         return '<Item %r>' % self.bought
-    '''
 
 # webhook
 @app.route("/callback", methods=['POST'])
@@ -147,6 +142,20 @@ def message_text(event):
         user_text = event.message.text
         item = user_text.replace('買った！', '')
         text = item + " をお買い物リストから除いたよ！"
+
+        if not User.query.filter_by(source_id=source_id).first():
+            user = User(source_id=source_id)
+            db.session.add(user)
+            db.session.commit()
+            # ユーザーが存在していない場合はユーザー登録をお知らせする
+            text = "ユーザー登録をしたよ！"
+
+        if User.query.filter_by(source_id=source_id).first():
+            user_id= User.query.filter_by(source_id=source_id).first().id
+            # itemと一致するこの人が持っているitemのboughtカラムをTrueに変更
+            item = Item(name=item, user_id=user_id, bought=True)
+            db.session.add(item)
+            db.session.commit()
 
     elif "買った!" in event.message.text:
         user_text = event.message.text
