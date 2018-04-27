@@ -189,7 +189,7 @@ def message_text(event):
         text = "現在のお買い物リストです。"
         source_id = str(event.source.user_id)
         user_id = User.query.filter_by(source_id=source_id).first().id
-        items = Item.query.filter_by(user_id=user_id).all()
+        items = Item.query.filter_by(user_id=user_id).filter(Item.bought == False).all()
         a = ""
         for item in items:
             a = a + item.name + '\n'
