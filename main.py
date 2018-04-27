@@ -200,7 +200,7 @@ def message_text(event):
 
     elif event.message.text == "おすすめ" or event.message.text == "オススメ" or event.message.text == "おすすめ商品":
         url = ItemUrl.query.first().url
-        text = "最近のおすすめ！\nお水をおうちに置いておこう！\n" + url
+        text = "作者志田による最近のおすすめ！\nお水をおうちに置いておこう！\n" + url
 
     elif "おはよ" in event.message.text:
         text = "おはようございます！"
