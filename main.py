@@ -199,7 +199,7 @@ def message_text(event):
             db.session.commit()
 
     elif event.message.text == "おすすめ" or event.message.text == "オススメ" or event.message.text == "おすすめ商品":
-        url = ItemUrl.query.fisrt().url
+        url = ItemUrl.query.first().url
         text = "最近のおすすめ！\nお水をおうちに置いておこう！" + url
 
     elif "おはよ" in event.message.text:
