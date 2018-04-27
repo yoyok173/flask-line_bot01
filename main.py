@@ -182,10 +182,10 @@ def message_text(event):
             db.session.add(item)
             db.session.commit()
 
-    elif "おはよう" in event.message.text:
+    elif "おはよ" in event.message.text:
         text = "おはようございます！"
 
-    elif event.message.text == "リスト":
+    elif event.message.text == "リスト" or event.message.text == "りすと":
         text = "現在のお買い物リストです。"
         source_id = str(event.source.user_id)
         user_id = User.query.filter_by(source_id=source_id).first().id
