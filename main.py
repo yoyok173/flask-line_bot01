@@ -73,6 +73,16 @@ class Item(db.Model):
     def __repr__(self):
         return '<Item %r>' % self.bought
 
+class ItemUrl(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(30))
+    url = db.Column(db.String(200))
+
+    def __init__(self, name, url):
+        self.name = name
+        self.url = url
+
+
 # webhook
 @app.route("/callback", methods=['POST'])
 def callback():
