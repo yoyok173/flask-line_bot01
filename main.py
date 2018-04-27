@@ -157,8 +157,8 @@ def message_text(event):
             # update
             item = Item.query.filter(Item.user_id == user_id ).filter(Item.bought == False).filter(Item.name == item).first()
             item.bought = True
-            session.add(item)
-            session.commit()
+            db.session.add(item)
+            db.session.commit()
 
     elif "買った!" in event.message.text:
         user_text = event.message.text
@@ -179,8 +179,8 @@ def message_text(event):
             # update
             item = Item.query.filter(Item.user_id == user_id).filter(Item.bought == False).filter(Item.name == item).first()
             item.bought = True
-            session.add(item)
-            session.commit()
+            db.session.add(item)
+            db.session.commit()
 
     elif "おはよう" in event.message.text:
         text = "おはようございます！"
