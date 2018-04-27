@@ -47,6 +47,9 @@ if channel_access_token is None:
 line_bot_api = LineBotApi(channel_access_token)
 handler = WebhookHandler(channel_secret)
 
+## # 一旦データベースを作り直す
+##   db.drop_all()
+##   db.create_all()
 
 # モデル
 class User(db.Model):
@@ -117,7 +120,7 @@ def message_text(event):
             db.session.commit()
 
         user_id= User.query.filter_by(source_id=source_id).first().id
-        item = Item(name=item, user_id=user_id)
+        item = Item(name=item, user_id=user_id, bought=False)
         db.session.add(item)
         db.session.commit()
 
@@ -136,7 +139,7 @@ def message_text(event):
             db.session.commit()
 
         user_id= User.query.filter_by(source_id=source_id).first().id
-        item = Item(name=item, user_id=user_id)
+        item = Item(name=item, user_id=user_id, bought=False)
         db.session.add(item)
         db.session.commit()
 
