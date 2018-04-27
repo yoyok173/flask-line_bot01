@@ -153,14 +153,32 @@ def message_text(event):
         if User.query.filter_by(source_id=source_id).first():
             user_id= User.query.filter_by(source_id=source_id).first().id
             # itemと一致するこの人が持っているitemのboughtカラムをTrueに変更
-            item = Item(name=item, user_id=user_id, bought=True)
-            db.session.add(item)
-            db.session.commit()
+            # update
+            Item.query.filter(Item.user_id == user_id ).filter(Item.bought == False).filter(Item.name == item).first()
+            item.bought = True
+            session.add(item)
+            session.commit()
 
     elif "買った!" in event.message.text:
         user_text = event.message.text
         item = user_text.replace('買った!', '')
         text = item + " をお買い物リストから除いたよ！"
+
+        if not User.query.filter_by(source_id=source_id).first():
+            user = User(source_id=source_id)
+            db.session.add(user)
+            db.session.commit()
+            # ユーザーが存在していない場合はユーザー登録をお知らせする
+            text = "ユーザー登録をしたよ！"
+
+        if User.query.filter_by(source_id=source_id).first():
+            user_id= User.query.filter_by(source_id=source_id).first().id
+            # itemと一致するこの人が持っているitemのboughtカラムをTrueに変更
+            # update
+            Item.query.filter(Item.user_id == user_id ).filter(Item.bought == False).filter(Item.name == item).first()
+            item.bought = True
+            session.add(item)
+            session.commit()
 
     elif "おはよう" in event.message.text:
         text = "おはようございます！"
