@@ -62,7 +62,7 @@ class Item(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     bought = db.Column(db.Boolean, default=False)
 
-    def __init__(self, name, user_id):
+    def __init__(self, name, user_id, bought):
         self.name = name
         self.user_id = user_id
         self.bought = bought
@@ -70,9 +70,10 @@ class Item(db.Model):
     # アイテムを購入したかどうかを判定する真偽値が必要
     # 同時に修正できるように設定しておく必要がある
     # リストから削除する。を伝えるとDBからデータが削除される
+    '''
     def __repr__(self):
         return '<Item %r>' % self.bought
-
+    '''
 
 # webhook
 @app.route("/callback", methods=['POST'])
@@ -109,7 +110,7 @@ def message_text(event):
         item = user_text.replace('買う！','')
         text = item + " をお買い物リストに入れたよ！"
         # ここで、DBにデータをいれる
-        #
+
         if not User.query.filter_by(source_id=source_id).first():
             user = User(source_id=source_id)
             db.session.add(user)
