@@ -155,7 +155,7 @@ def message_text(event):
             user_id= User.query.filter_by(source_id=source_id).first().id
             # itemと一致するこの人が持っているitemのboughtカラムをTrueに変更
             # update
-            Item.query.filter(Item.user_id == user_id ).filter(Item.bought == False).filter(Item.name == item).first()
+            item = Item.query.filter(Item.user_id == user_id ).filter(Item.bought == False).filter(Item.name == item).first()
             item.bought = True
             session.add(item)
             session.commit()
@@ -177,7 +177,7 @@ def message_text(event):
             user_id= User.query.filter_by(source_id=source_id).first().id
             # itemと一致するこの人が持っているitemのboughtカラムをTrueに変更
             # update
-            Item.query.filter(Item.user_id == user_id ).filter(Item.bought == False).filter(Item.name == item).first()
+            item = Item.query.filter(Item.user_id == user_id).filter(Item.bought == False).filter(Item.name == item).first()
             item.bought = True
             session.add(item)
             session.commit()
