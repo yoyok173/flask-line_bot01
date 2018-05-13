@@ -236,7 +236,7 @@ def message_text(event):
         text = text + '\n\n' + a
         # slack
         slack = slackweb.Slack(url=channel_slack_token)
-        slack.notify(text="Hello Kumi!")
+        slack.notify(text=source_id +"リストを開いたよ！")
 
 
     else:
