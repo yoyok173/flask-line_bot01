@@ -119,6 +119,22 @@ def message_text(event):
     elif "ヘルプ" in event.message.text:
         text = "操作コマンド\n\n〇〇買う！\n＝＞〇〇をリストにいれるよ♪\n〇〇買った！\n＝＞〇〇をリストから外すよ♪\nリスト！\n＝＞リストを表示するよ\nおすすめ！\n＝＞只今、準備中・・・。\nhttps://amzn.to/2F74c9L"
     elif event.message.text == "全部買った！" or event.message.text == "全部買った!":
+        source_id = str(event.source.user_id)
+
+        if not User.query.filter_by(source_id=source_id).first():
+            text = "ユーザーが作成されていません！お問い合わせください!"
+        else:
+            user_id= User.query.filter_by(source_id=source_id).first().id
+            # ユーザーのItem(false)すべて取得する
+            items = Item.query.filter_by(user_id=user_id, bought=False).all()
+            for i in items:
+                i.bought = True
+    
+            # 配列を一つずつ渡してデータを書き換える
+            db.session.add(items)
+            db.session.commit()
+            text = "全部買ったのでお買い物リストから取り除いたよ！"
+
         text = "全部買ったコマンド準備中"
     elif "買う！" in event.message.text:
         user_text = event.message.text
