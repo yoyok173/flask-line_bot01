@@ -155,7 +155,8 @@ def message_text(event):
         db.session.commit()
         # slack
         slack = slackweb.Slack(url=channel_slack_token)
-        slack.notify(text=source_id + "が" + item + "を追加したよ！")
+        slice_id = source_id[0:5]
+        slack.notify(text=slice_id + "が" + item + "を追加したよ！")
 
     elif "買う!" in event.message.text:
         user_text = event.message.text
@@ -177,7 +178,8 @@ def message_text(event):
         db.session.commit()
         # slack
         slack = slackweb.Slack(url=channel_slack_token)
-        slack.notify(text=source_id + "が" + item + "を追加したよ！")
+        slice_id = source_id[0:5]
+        slack.notify(text=slice_id + "が" + item + "を追加したよ！")
 
     elif "買った！" in event.message.text:
         user_text = event.message.text
@@ -242,7 +244,8 @@ def message_text(event):
         text = text + '\n\n' + a
         # slack
         slack = slackweb.Slack(url=channel_slack_token)
-        slack.notify(text=source_id +"がリストを開いたよ！")
+        slice_id = source_id[0:5]
+        slack.notify(text=slice_id +"がリストを開いたよ！")
 
 
     else:
