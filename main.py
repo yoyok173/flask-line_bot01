@@ -127,12 +127,12 @@ def message_text(event):
             user_id= User.query.filter_by(source_id=source_id).first().id
             # ユーザーのItem(false)すべて取得する
             items = Item.query.filter_by(user_id=user_id, bought=False).all()
-            for i in items:
-                i.bought = True
+            for item in items:
+                item.bought = True
+                db.session.add(item)
+                db.session.commit()
     
             # 配列を一つずつ渡してデータを書き換える
-            db.session.add(items)
-            db.session.commit()
             text = "全部買ったのでお買い物リストから取り除いたよ！"
 
         text = "全部買ったコマンド準備中"
