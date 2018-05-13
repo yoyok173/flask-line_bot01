@@ -150,9 +150,12 @@ def message_text(event):
             db.session.commit()
 
         user_id= User.query.filter_by(source_id=source_id).first().id
-        item = Item(name=item, user_id=user_id, bought=False)
-        db.session.add(item)
+        item_o = Item(name=item, user_id=user_id, bought=False)
+        db.session.add(item_o)
         db.session.commit()
+        # slack
+        slack = slackweb.Slack(url=channel_slack_token)
+        slack.notify(text=source_id + "が" + item + "を追加したよ！")
 
     elif "買う!" in event.message.text:
         user_text = event.message.text
@@ -169,9 +172,12 @@ def message_text(event):
             db.session.commit()
 
         user_id= User.query.filter_by(source_id=source_id).first().id
-        item = Item(name=item, user_id=user_id, bought=False)
-        db.session.add(item)
+        item_o = Item(name=item, user_id=user_id, bought=False)
+        db.session.add(item_o)
         db.session.commit()
+        # slack
+        slack = slackweb.Slack(url=channel_slack_token)
+        slack.notify(text=source_id + "が" + item + "を追加したよ！")
 
     elif "買った！" in event.message.text:
         user_text = event.message.text
