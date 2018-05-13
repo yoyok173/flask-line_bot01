@@ -148,6 +148,8 @@ def message_text(event):
             user = User(source_id=source_id)
             db.session.add(user)
             db.session.commit()
+            slack = slackweb.Slack(url=channel_slack_token)
+            slack.notify(text="新規アカウントが作成されたよ！" + source_id)
 
         user_id= User.query.filter_by(source_id=source_id).first().id
         item_o = Item(name=item, user_id=user_id, bought=False)
@@ -171,6 +173,8 @@ def message_text(event):
             user = User(source_id=source_id)
             db.session.add(user)
             db.session.commit()
+            slack = slackweb.Slack(url=channel_slack_token)
+            slack.notify(text="新規アカウントが作成されたよ！" + source_id)
 
         user_id= User.query.filter_by(source_id=source_id).first().id
         item_o = Item(name=item, user_id=user_id, bought=False)
