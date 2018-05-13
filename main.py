@@ -135,7 +135,6 @@ def message_text(event):
             # 配列を一つずつ渡してデータを書き換える
             text = "全部買ったのでお買い物リストから取り除いたよ！"
 
-        text = "全部買ったコマンド準備中"
     elif "買う！" in event.message.text:
         user_text = event.message.text
         source_id = str(event.source.user_id)
