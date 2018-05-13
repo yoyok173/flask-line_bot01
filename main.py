@@ -133,8 +133,6 @@ def message_text(event):
                 item.bought = True
                 db.session.add(item)
                 db.session.commit()
-    
-            # 配列を一つずつ渡してデータを書き換える
             text = "全部買ったのでお買い物リストから取り除いたよ！"
 
     elif "買う！" in event.message.text:
@@ -155,7 +153,7 @@ def message_text(event):
         item_o = Item(name=item, user_id=user_id, bought=False)
         db.session.add(item_o)
         db.session.commit()
-        # slack
+        # SLACK通知
         slack = slackweb.Slack(url=channel_slack_token)
         slice_id = source_id[0:5]
         slack.notify(text=slice_id + "が" + item + "を追加したよ！")
@@ -180,7 +178,7 @@ def message_text(event):
         item_o = Item(name=item, user_id=user_id, bought=False)
         db.session.add(item_o)
         db.session.commit()
-        # slack
+        # SLACK通知
         slack = slackweb.Slack(url=channel_slack_token)
         slice_id = source_id[0:5]
         slack.notify(text=slice_id + "が" + item + "を追加したよ！")
@@ -246,7 +244,7 @@ def message_text(event):
             a = a + item.name + '\n'
 
         text = text + '\n\n' + a
-        # slack
+        # SLACK通知
         slack = slackweb.Slack(url=channel_slack_token)
         slice_id = source_id[0:5]
         slack.notify(text=slice_id +"がリストを開いたよ！")
