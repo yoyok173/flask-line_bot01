@@ -232,6 +232,8 @@ def message_text(event):
             a = a + item.name + '\n'
 
         text = text + '\n\n' + a
+        slack = slackweb.Slack(url='SLACK_PYTHON')
+        slack.notify(text="Hello Kumi!")
 
 
     else:
