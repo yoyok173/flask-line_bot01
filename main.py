@@ -38,6 +38,7 @@ db = SQLAlchemy(app)
 # get channel_secret and channel_access_token from your environment variable
 channel_secret = os.getenv('LINE_CHANNEL_SECRET', None)
 channel_access_token = os.getenv('LINE_CHANNEL_ACCESS_TOKEN', None)
+channel_slack_token = os.getenv('SLACK_PYTHON', None)
 if channel_secret is None:
     print('Specify LINE_CHANNEL_SECRET as environment variable.')
     sys.exit(1)
@@ -233,8 +234,8 @@ def message_text(event):
             a = a + item.name + '\n'
 
         text = text + '\n\n' + a
-        slack_url = SLACK_PYTHON
-        slack = slackweb.Slack(url=slack_url)
+        # slack
+        slack = slackweb.Slack(url=channel_slack_token)
         slack.notify(text_demo="Hello Kumi!")
 
 
