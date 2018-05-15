@@ -234,7 +234,7 @@ def message_text(event):
     elif "おはよ" in event.message.text:
         text = "おはようございます！"
 
-    elif event.message.text == "リスト" or event.message.text == "りすと" or event.message.text == "りすと！" or event.message.text == "りすと!" or event.message.text == "リスト！" or event.message.text == "リスト!":
+    elif event.message.text == "リスト" or event.message.text == "りすと" or event.message.text == "りすと！" or event.message.text == "りすと!" or event.message.text == "リスト！" or event.message.text == "リスト!" or event.message.text == "メモ":
         text = "現在のお買い物リストです。"
         source_id = str(event.source.user_id)
         user_id = User.query.filter_by(source_id=source_id).first().id
