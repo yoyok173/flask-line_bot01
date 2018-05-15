@@ -251,7 +251,7 @@ def message_text(event):
 
 
     else:
-        text = "あなたがおっしゃったことは" + event.message.text + "ですね。"
+        text = "あなたがおっしゃったことは" + event.message.text + "ですね。\n操作について知りたい時は、「ヘルプ」と入力してみてね！"
     
     line_bot_api.reply_message(
         event.reply_token,
