@@ -120,6 +120,21 @@ def message_text(event):
         text = str(event.source.user_id)
     elif "ヘルプ" in event.message.text:
         text = "操作コマンド\n\n〇〇買う！\n＝＞〇〇をリストにいれるよ♪\n〇〇買った！\n＝＞〇〇をリストから外すよ♪\nリスト！\n＝＞リストを表示するよ\nおすすめ！\n＝＞只今、準備中・・・。\nhttps://amzn.to/2F74c9L"
+    elif event.message.text == "リスト" or event.message.text == "りすと" or event.message.text == "りすと！" or event.message.text == "りすと!" or event.message.text == "リスト！" or event.message.text == "リスト!" or event.message.text == "メモ":
+        text = "現在のお買い物リストです。"
+        source_id = str(event.source.user_id)
+        user_id = User.query.filter_by(source_id=source_id).first().id
+        items = Item.query.filter_by(user_id=user_id).filter(Item.bought == False).all()
+        a = ""
+        for item in items:
+            a = a + item.name + '\n'
+
+        text = text + '\n\n' + a
+        # SLACK通知
+        slack = slackweb.Slack(url=channel_slack_token)
+        slice_id = source_id[0:5]
+        slack.notify(text=slice_id +"がリストを開いたよ！")   
+    
     elif event.message.text == "全部買った！" or event.message.text == "全部買った!":
         source_id = str(event.source.user_id)
 
@@ -233,22 +248,6 @@ def message_text(event):
 
     elif "おはよ" in event.message.text:
         text = "おはようございます！"
-
-    elif event.message.text == "リスト" or event.message.text == "りすと" or event.message.text == "りすと！" or event.message.text == "りすと!" or event.message.text == "リスト！" or event.message.text == "リスト!" or event.message.text == "メモ":
-        text = "現在のお買い物リストです。"
-        source_id = str(event.source.user_id)
-        user_id = User.query.filter_by(source_id=source_id).first().id
-        items = Item.query.filter_by(user_id=user_id).filter(Item.bought == False).all()
-        a = ""
-        for item in items:
-            a = a + item.name + '\n'
-
-        text = text + '\n\n' + a
-        # SLACK通知
-        slack = slackweb.Slack(url=channel_slack_token)
-        slice_id = source_id[0:5]
-        slack.notify(text=slice_id +"がリストを開いたよ！")
-
 
     else:
         text = "あなたがおっしゃったことは" + event.message.text + "ですね。\n操作について知りたい時は、「ヘルプ」と入力してみてね！"
