@@ -150,6 +150,7 @@ def message_text(event):
                 db.session.commit()
             text = "全部買ったのでお買い物リストから取り除いたよ！"
 
+    ## 複数のアイテム買う時の対応必要
     elif "買う！" in event.message.text:
         user_text = event.message.text
         source_id = str(event.source.user_id)
@@ -198,6 +199,8 @@ def message_text(event):
         slice_id = source_id[0:5]
         slack.notify(text=slice_id + "が" + item + "を追加したよ！")
 
+
+    ## 複数のアイテム買う時の対応必要
     elif "買った！" in event.message.text:
         user_text = event.message.text
         source_id = str(event.source.user_id)
@@ -219,6 +222,8 @@ def message_text(event):
             item.bought = True
             db.session.add(item)
             db.session.commit()
+        else:
+            text = "買った！と宣言した商品は、メモから削除されているかな？「メモ」と入力して確認してみよう！\nもしメモに残っているいたら、開発者志田まで連絡してください！"
 
     elif "買った!" in event.message.text:
         user_text = event.message.text
@@ -241,6 +246,8 @@ def message_text(event):
             item.bought = True
             db.session.add(item)
             db.session.commit()
+        else:
+            text = "買った！と宣言した商品は、メモから削除されているかな？「メモ」と入力して確認してみよう！\nもしメモに残っているいたら、開発者志田まで連絡してください！"
 
     elif event.message.text == "おすすめ" or event.message.text == "オススメ" or event.message.text == "おすすめ商品":
         url = ItemUrl.query.first().url
