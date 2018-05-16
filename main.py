@@ -222,8 +222,8 @@ def message_text(event):
             item.bought = True
             db.session.add(item)
             db.session.commit()
-        else:
-            text = "買った！と宣言した商品は、メモから削除されているかな？「メモ」と入力して確認してみよう！\nもしメモに残っているいたら、開発者志田まで連絡してください！"
+        #else:
+        #    text = "買った！と宣言した商品は、メモから削除されているかな？「メモ」と入力して確認してみよう！\nもしメモに残っているいたら、開発者志田まで連絡してください！"
 
     elif "買った!" in event.message.text:
         user_text = event.message.text
@@ -246,8 +246,8 @@ def message_text(event):
             item.bought = True
             db.session.add(item)
             db.session.commit()
-        else:
-            text = "買った！と宣言した商品は、メモから削除されているかな？「メモ」と入力して確認してみよう！\nもしメモに残っているいたら、開発者志田まで連絡してください！"
+        #else:
+        #    text = "買った！と宣言した商品は、メモから削除されているかな？「メモ」と入力して確認してみよう！\nもしメモに残っているいたら、開発者志田まで連絡してください！"
 
     elif event.message.text == "おすすめ" or event.message.text == "オススメ" or event.message.text == "おすすめ商品":
         url = ItemUrl.query.first().url
